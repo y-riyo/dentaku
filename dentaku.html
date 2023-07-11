@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+ 
+</head>
+ 
+<body>
+  <form name="dentaku">
+    <table>
+      <!-- 液晶画面部分 -->
+      <tr>
+        <td colspan="4">
+          <input type="text" class="display" name="display" value="" disabled>
+        </td>
+      </tr>
+ 
+      <!-- 上から1段目（7~9＋÷） -->
+      <tr>
+        <td><input type="button" value="C" class = "topclass" onclick="get_calc(this)"></td>
+        <td><input type="button" value="+/-" class = "topclass" onclick="get_calc(this)"></td>
+        <td><input type="button" value="%" class = "topclass" name = "per_btn" onclick="get_calc(this)" ></td>
+        <td><input type="button" value="÷" class="operator" name="div_btn" onclick="get_calc(this)"></td>
+      </tr>
+
+      <!-- 上から2段目（7~9＋÷） -->
+      <tr>
+        <td><input type="button" value="7" onclick="get_calc(this)"></td>
+        <td><input type="button" value="8" onclick="get_calc(this)"></td>
+        <td><input type="button" value="9" onclick="get_calc(this)"></td>
+        <td><input type="button" value="×" class="operator" name="multi_btn" onclick="get_calc(this)"></td>
+      </tr>
+        
+      <!-- 上から3段目（4~6＋×） -->
+      <tr>
+        <td><input type="button" value="4" onclick="get_calc(this)"></td>
+        <td><input type="button" value="5" onclick="get_calc(this)"></td>
+        <td><input type="button" value="6" onclick="get_calc(this)"></td>
+        <td><input type="button" value="-" class="operator" onclick="get_calc(this)"></td>
+      </tr>
+ 
+      <!-- 上から4段目（1~3＋-） -->
+      <tr>
+        <td><input type="button" value="1" onclick="get_calc(this)"></td>
+        <td><input type="button" value="2" onclick="get_calc(this)"></td>
+        <td><input type="button" value="3" onclick="get_calc(this)"></td>
+        <td><input type="button" value="+" class="operator" onclick="get_calc(this)"></td>
+      </tr>
+ 
+      <!-- 上から5段目（0/C/=/+) -->
+      <tr>
+        <td><input type="button" value="0" class = "bigbot" onclick="get_calc(this)"></td>
+        <td><input type="button" value="." onclick="get_calc(this)"></td>
+        <td><input type="button" value="=" class="operator" onclick="get_calc(this)"></td>
+        
+      </tr>
+      <style>
+        /* テーブルの装飾 */
+        table {
+           /* 電卓のサイズ */
+           width: 500px;
+           height: 700px;
+           background-color: black;
+           
+           /* インライン要素を中央に配置 */
+           text-align: center;
+           /* 余白調整 */
+           padding: 8px;
+           margin: 20px;
+         }
+       
+         input {
+           /* ボタンのサイズ */
+           width: 90px;
+           height: 90px;
+           /* ボタンの文字サイズ */
+           font-size: 40px;
+           /* 数字部分の背景色 */
+           background-color:#696868 ;
+           /* ボタンの詳細設定 */
+           border: none;
+           border-radius: 50%;
+           /* クリック時の黒枠を消す */
+           outline: none;
+           color: white;
+
+         }
+         
+         /* ディスプレイの詳細設定 */
+         .display {
+           width: 400px;
+           text-align: right; /* 文字を右詰めに */
+           
+           /* 見た目の詳細設定 */
+           background: black;
+           border-top: solid black 5px;
+           border-bottom: solid black 5px;
+           border-right: solid black 6px;
+           border-left: solid black 6px;
+           border-radius: 5px;
+           font-size: 80px;
+         }
+         /* 演算子の背景色を上書きで設定 */
+         .operator {
+           background-color: orange;
+           
+         }
+
+         .topclass {
+           background-color: #b6b6b6;
+           color:black;
+         }
+
+         
+
+         /* カーソルを上に乗せた時に色を薄くする */
+         input:hover {
+           background:#dcd7d7;
+         }
+         .display:hover {
+           background: black; /* ディスプレイ部分は無効化 */
+         }
+         .operator:hover {
+           background: #e7af74;
+         }
+       
+         /* クリック時に色を薄くする */
+         input:active {
+           background:  #dcd7d7;
+         }
+         .operator:active {
+           background: #e7af74;
+         }
+         </style>
+
+        <script>
+            function get_calc(btn) {
+  if(btn.value == "=") {
+    document.dentaku.display.value = eval(document.dentaku.display.value);
+  } else if (btn.value == "C") {
+    document.dentaku.display.value = "";
+  } else {
+    if (btn.value == "×") {
+      btn.value = "*";
+    } else if (btn.value == "÷") {
+      btn.value = "/";
+    } 
+    if(btn.value == "%"){
+      btn.value = "/100"
+    }
+    
+    document.dentaku.display.value += btn.value;
+    document.dentaku.multi_btn.value = "×";
+    document.dentaku.div_btn.value = "÷";
+    document.dentaku.per_btn.value = "%";
+  }
+}
+        </script>
+        
+ 
+    </table>
+  </form>
+</body>
+</html>
